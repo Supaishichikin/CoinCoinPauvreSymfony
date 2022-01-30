@@ -39,7 +39,7 @@ final class QuestionFactory extends ModelFactory
     {
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
-            'libelle' => self::faker()->text(mt_rand(1, 150)),
+            'libelle' => self::faker()->text(mt_rand(5, 150)) . '?',
         ];
     }
 

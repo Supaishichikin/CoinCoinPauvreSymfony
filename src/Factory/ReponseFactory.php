@@ -40,8 +40,7 @@ final class ReponseFactory extends ModelFactory
         return [
             // TODO add your default values here (https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories)
             'content' => self::faker()->text(mt_rand(5, 50)),
-            'username' => self::faker()->userName(),
-            'votes' => self::faker()->randomNumber(),
+            'username' => self::faker()->userName(mt_rand(5,50)),
             'question' => QuestionFactory::random()
         ];
     }

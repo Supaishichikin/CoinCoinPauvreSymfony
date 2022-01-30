@@ -43,6 +43,9 @@ final class UserFactory extends ModelFactory
             'email' => self::faker()->email(),
             'roles' => [],
             'isVerified' => self::faker()->boolean(),
+            'firstname' => self::faker()->firstName(),
+            'lastname' => self::faker()->lastName(),
+            'votes' => self::faker()->numberBetween(-10, 300)
         ];
     }
 
