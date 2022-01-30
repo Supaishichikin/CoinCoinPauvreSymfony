@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ text }}</h1>
+
+    
+    {% if app.user %}
+        <a href="{{ path('app_logout') }}" class="btn btn-danger">logout</a>
+    {% else %}
+        <a href="{{ path('app_login') }}" class="btn btn-primary">login</a>
+        <a href="{{ path('app_register') }}" class="btn btn-success">register</a>
+    {% endif %}
+
+{% endblock %}
