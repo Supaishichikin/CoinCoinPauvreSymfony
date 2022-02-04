@@ -235,4 +235,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    public function voteUp()
+    {
+        $this->votes = $this->votes + 1;
+
+        return $this;
+    }
+
+    public function voteDown()
+    {
+        $this->votes = $this->votes - 1;
+
+        return $this;
+    }
 }

@@ -31,6 +31,12 @@ class Question
      */
     private $reponses;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Annonce::class, inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $annonce;
+
     public function __construct()
     {
         $this->reponses = new ArrayCollection();
@@ -79,6 +85,18 @@ class Question
                 $reponse->setQuestion(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAnnonce(): ?Annonce
+    {
+        return $this->annonce;
+    }
+
+    public function setAnnonce(?Annonce $annonce): self
+    {
+        $this->annonce = $annonce;
 
         return $this;
     }

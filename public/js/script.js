@@ -3,12 +3,14 @@ $( document ).ready(function() {
         e.preventDefault();
 
         let direction = $(e.currentTarget).data('direction');
+        let user_id = $(e.currentTarget).data('user-id');
         let pill = $(e.currentTarget).parent().find('.js-vote-total');
-        
-        $.post('/comments/1/vote/' + direction, {},
-            function (response) {
-                pill.text(response.votes);
+        let url = '/vote/' + user_id + '/' + direction;
+        $.getJSON({
+            url: url,
+            success: function (response) {
+                pill.text(response.vote);
             }
-        );
+        })
     });
 });

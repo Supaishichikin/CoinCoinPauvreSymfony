@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <form action="{{ path('search-annonce') }}">
+        <input
+           type="search"
+           name="q"
+           placeholder="Search"
+           class="form-control"
+           aria-label="search"
+        >
+        <input class="btn btn-primary" type="submit">
+    </form>
+    {% if annonces|length > 0 %}
+        {% for annonce in annonces %}
+            <h2>{{ annonce.user.firstname }} {{ annonce.user.lastname }}</h2>
+            <h3>{{ annonce.titre }}</h3>
+            <p>{{ annonce.prix }}€ </p>
+            <p> {% for tag in annonce.tags %}
+                    {{ tag.libelle }}
+                    {% if j != (annonce.tags|length) - 1 %} , {% endif %}
+                    {% set j = j + 1 %}
+                {% endfor %}
+            </p>
+            <p>{{ annonce.description }}</p>
+            <p> {{ annonce.dateDePublication | ago }} </p>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

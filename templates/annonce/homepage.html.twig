@@ -3,12 +3,37 @@
 {% block body %}
     <h1>{{ text }}</h1>
 
-    
     {% if app.user %}
         <a href="{{ path('app_logout') }}" class="btn btn-danger">logout</a>
+        <a href="{{ path('create-annonce', {user_id: app.user.id}) }}" class="btn btn-primary">Créer une annonce</a>
     {% else %}
         <a href="{{ path('app_login') }}" class="btn btn-primary">login</a>
         <a href="{{ path('app_register') }}" class="btn btn-success">register</a>
     {% endif %}
+    {% for annonce in annonces %}
+        <h2>{{ annonce.user.firstname }} {{ annonce.user.lastname }}</h2>
+        {% for photos in annonce.photos %}
+            <img src="{{ asset(photos.fullPathImage) | imagine_filter('my_thumb') }}" class="bd-placeholder-img" width="140" height="140">
+        {% endfor %}
 
+        <div class="col float-end js-vote">
+            notez le vendeur
+            <button class="badge bg-success js-vote-up" data-user-id="{{ annonce.user.id }}" data-direction="up">vote up</button>
+            <button class="badge bg-danger js-vote-down" data-user-id="{{ annonce.user.id }}" data-direction="down">vote down</button>
+            <span class="badge bg-secondary mx-3 js-vote-total">{{ annonce.user.votes }}</span>
+        </div>
+        <h3>{{ annonce.titre }}</h3>
+        <p>{{ annonce.prix }}€ </p>
+        <p> {% for tag in annonce.tags %}
+                {{ tag.libelle }}
+                {% if j != (annonce.tags|length) - 1 %} , {% endif %}
+                {% set j = j + 1 %}
+            {% endfor %}
+            {% set j = 0 %}
+        </p>
+        <p>{{ annonce.description }}</p>
+        <p> {{ annonce.dateDePublication | ago }} </p>
+        <a class="btn btn-success" href="{{ path('app_detail_annonce',  { id : annonce.id }) }}">Détail</a>
+    {% endfor %}
+    {{ knp_pagination_render(annonces) }}
 {% endblock %}
