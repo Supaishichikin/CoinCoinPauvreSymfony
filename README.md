@@ -1,6 +1,6 @@
 # CoinCoinPauvreSymfony
 
-Normalement toutes les consignes ont été réalisé (bien sûr à améliorer et la navigation est null, il n'y a pas plus pauvre que ce coincoinPauvre)
+Normalement toutes les consignes ont été réalisées (bien sûr à améliorer et la navigation est perfectible, il n'y a pas plus pauvre que ce coincoinPauvre)
 
 Pour lancer le projet, composer install, lancer l'image docker, faire un symfony serve, ouvrir un smtp
 à renseigner dans le point env (pour les confirmation d'inscription par mail (on a utilisé MailHog).
